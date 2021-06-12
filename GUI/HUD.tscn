@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/HUD.gd" type="Script" id=1]
+[ext_resource path="res://GUI/progress_bar.tres" type="StyleBox" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.301961 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+margin_left = 31.0
+margin_top = 27.0
+margin_right = 292.0
+margin_bottom = 40.0
+custom_styles/fg = ExtResource( 2 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="HUD/ProgressBar" to="HUD" method="_on_ProgressBar_value_changed"]
