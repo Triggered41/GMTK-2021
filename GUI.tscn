@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Fonts/Roboto Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Heath Bar.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="GUI" type="Node2D"]
+
+[node name="Heath Bar" type="ProgressBar" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 410.0
+margin_bottom = 50.0
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color_high_health = Color( 0, 1, 0, 1 )
+color_medium_health = Color( 1, 0.498039, 0.215686, 1 )
+color_low_health = Color( 1, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 420.0
+margin_top = 10.0
+margin_right = 540.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
