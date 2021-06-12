@@ -1,40 +1,42 @@
 extends KinematicBody2D
 
 
-var speed = 500
+var speed = 250
 var GRAVITY = 50
 var JUMP_FORCE = 1300
 
 var velocity = Vector2.ZERO
 
 onready var line = get_parent().get_node("Line2D") 
-onready var ray = $RayCast2D
 onready var shooter = $Shoot
+
+var shooting = false
 
 var player: KinematicBody2D
 
 func _ready():
 	player = get_parent().get_node("player-1")
 
-
 func _physics_process(delta):
-	
-	shooter.look_at(player.global_position)
+	face_player()
 	is_visible()
 	if !is_on_floor():
 		velocity.y += GRAVITY
 	else:
 		velocity.y = 0
-	movement()
+	if !shooting:
+		movement()
 	path()
-	
 	velocity = move_and_slide(velocity, Vector2.UP)
-func is_visible():
-	var dir = player.global_position - ray.global_position
-	ray.cast_to = dir
-	var col = ray.get_collider()
-	if col and col.is_in_group("player"):
-		shooter.shoot()
+
+func face_player():
+	if player.global_position.x < global_position.x:
+		$enemy.scale.x = -1.623
+		attack("left_attack")
+	elif player.global_position.x > global_position.x:
+		$enemy.scale.x = 1.623
+		attack("attack_anim")
+
 
 func path():
 	var nav = get_parent() as Navigation2D
@@ -50,5 +52,14 @@ func movement():
 
 func jump():
 	velocity.y = -JUMP_FORCE
-	
-	
+
+func attack(anim):
+	if global_position.distance_to(player.global_position) < 200:
+		$AnimationPlayer.play(anim)
+	else:
+		$AnimationPlayer.stop()
+
+
+func _on_Sword_body_entered(body):
+	if body.is_in_group("player"):
+		GLobalData.health -= 10

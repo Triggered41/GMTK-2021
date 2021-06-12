@@ -9,12 +9,11 @@ var accel = 0.5
 func _physics_process(delta):
 	if GLobalData.player1:
 		movement()
-		modulate = Color.red
 	if !is_on_floor():
 		velocity.y += GRAVITY
 	else:
 		velocity.y = 0
-		if Input.is_action_pressed("ui_select"):
+		if Input.is_action_pressed("ui_up"):
 			jump()
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
