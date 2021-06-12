@@ -15,9 +15,9 @@ func _process(delta):
 	#sets bar color to color according to hp value
 	style_box.bg_color = current_color
 	
-	if value > 33:
+	if value < 33:
 		current_color = color_low_health
-	elif value > 66:
+	elif value < 66:
 		current_color = color_medium_health
 	else:
 		current_color = color_high_health
