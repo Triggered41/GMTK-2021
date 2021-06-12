@@ -10,10 +10,10 @@ extents = Vector2( 32, 32 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 gravity = 1600.0
-acceleration = 30.0
-deceleration = 5.0
+acceleration = 100.0
+deceleration = 100.0
 maxspeed = 500.0
-jump_height = 900.0
+jump_height = 800.0
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -22,7 +22,6 @@ shape = SubResource( 1 )
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
